@@ -1,0 +1,32 @@
+name: 03cake Autotester
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Build Repository
+        run: make
+        
+      - name: Test 1
+        run: make test1
+        continue-on-error: true
+        
+      - name: Test 2
+        run: make test2
+        continue-on-error: true
+        
+      - name: Test 3
+        run: make test3
+        continue-on-error: true
+
